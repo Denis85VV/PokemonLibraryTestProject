@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PokemonViewController.swift
 //  PokemonLibraryTestTask
 //
 //  Created by Denis on 13.01.2021.
@@ -7,12 +7,23 @@
 import UIKit
 import Kingfisher
 
-class ViewController: UIViewController {
+class PokemonViewController: UIViewController {
   
-  let pokemonImageView = UIImageView()
-  let pokemonLabelView = UILabel()
-  var pokemonImage: URL!
-  var pokemonLabel: String!
+  private let pokemonImageView = UIImageView()
+  private let pokemonLabelView = UILabel()
+  
+  private var pokemonImage: URL
+  private var pokemonLabel: String
+  
+  init(pokemonImage: URL, pokemonLabel: String) {
+    self.pokemonImage = pokemonImage
+    self.pokemonLabel = pokemonLabel
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()

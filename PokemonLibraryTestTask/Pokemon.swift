@@ -33,6 +33,7 @@ struct Pokemon: Decodable {
       self.name = replacedName
     }
   }
+  
 }
 
 struct PokemonList: Decodable {

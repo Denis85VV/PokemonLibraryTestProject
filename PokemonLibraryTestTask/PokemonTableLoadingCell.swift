@@ -7,19 +7,19 @@
 
 import UIKit
 
-class LoadingCell: UITableViewCell {
-
+class PokemonTableLoadingCell: UITableViewCell {
+  
   static let loadingCell = "LoadingCell"
-  let loadingIndicator = UIActivityIndicatorView()
+  public let loadingIndicator = UIActivityIndicatorView()
   
-    override func awakeFromNib() {
-      super.awakeFromNib()
-    }
+  override func awakeFromNib() {
+    super.awakeFromNib()
+  }
   
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
+  override func setSelected(_ selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+    // Configure the view for the selected state
+  }
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -32,4 +32,5 @@ class LoadingCell: UITableViewCell {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
 }
