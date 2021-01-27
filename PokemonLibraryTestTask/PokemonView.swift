@@ -21,7 +21,7 @@ class PokemonView: UIView {
     return imageView
   }()
   
-  public let view: UIView = {
+  private let view: UIView = {
     let view = UIView()
     view.backgroundColor = .white
     return view

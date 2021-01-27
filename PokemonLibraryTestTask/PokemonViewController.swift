@@ -36,7 +36,7 @@ class PokemonViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.navigationItem.title = pokemonLabel;
+    self.navigationItem.title = pokemonLabel
     pokemonImageView?.imageView.kf.setImage(with: pokemonImage)
     pokemonLabelView?.label.text = pokemonLabel
   }

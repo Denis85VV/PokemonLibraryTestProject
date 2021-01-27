@@ -10,17 +10,19 @@ import SwiftGifOrigin
 
 class PokemonTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
   
-  public let loadingGif = UIImage.gif(name: "loading")
-  var url = URL(string: "https://pokeapi.co/api/v2/pokemon?limit=5&offset=0")!
-  private let defaultImageUrl = URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png")!
-  var pokemonTableView: PokemonTableView? {
+  static let loadingGif = UIImage.gif(name: "loading")
+  static let pokemonCell = "PokemonCell"
+  static let defaultImageUrl = URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png")!
+  
+  public var url = URL(string: "https://pokeapi.co/api/v2/pokemon?limit=30&offset=0")!
+  
+  private var fetchingMore = false
+  private var counter = 30
+  private var pokemonList = [Pokemon]()
+  private var pokemonArray = [Pokemon]()
+  private var pokemonTableView: PokemonTableView? {
     view as? PokemonTableView
   }
-  var pokemonList = [Pokemon]()
-  var pokemonArray = [Pokemon]()
-  var fetchingMore = false
-  var counter = 5
-  static let pokemonCell = "PokemonCell"
   
   override func loadView() {
     view = PokemonTableView()
@@ -43,7 +45,7 @@ class PokemonTableViewController: UIViewController, UITableViewDataSource, UITab
     var currentSelectedImage: URL
     var currentSelectedLabel: String
     
-    currentSelectedImage = pokemonArray[indexPath.row].imageURL ?? defaultImageUrl
+    currentSelectedImage = pokemonArray[indexPath.row].imageURL ?? PokemonTableViewController.defaultImageUrl
     currentSelectedLabel = pokemonArray[indexPath.row].name.capitalized
     
     let vc = PokemonViewController(pokemonImage: currentSelectedImage, pokemonLabel: currentSelectedLabel)
@@ -71,11 +73,10 @@ class PokemonTableViewController: UIViewController, UITableViewDataSource, UITab
       let cell = tableView.dequeueReusableCell(withIdentifier: PokemonTableViewController.pokemonCell, for: indexPath)
       cell.accessoryType = .disclosureIndicator
       cell.textLabel?.text = pokemonArray[indexPath.row].name.capitalized
-      cell.imageView?.kf.setImage(with: pokemonArray[indexPath.row].imageURL, placeholder: loadingGif)
+      cell.imageView?.kf.setImage(with: pokemonArray[indexPath.row].imageURL, placeholder: PokemonTableViewController.loadingGif)
       return cell
     } else {
       let cell = tableView.dequeueReusableCell(withIdentifier: PokemonTableLoadingCell.loadingCell, for: indexPath) as! PokemonTableLoadingCell
-      //cell.separatorInset = UIEdgeInsets.zero // hid separator line did not work
       cell.loadingIndicator.startAnimating()
       return cell
     }
@@ -113,15 +114,23 @@ class PokemonTableViewController: UIViewController, UITableViewDataSource, UITab
     fetchingMore = true
     //self.pokemonTableView?.tableView.reloadSections(IndexSet(integer: 1), with: .none) // crush
     self.pokemonTableView?.tableView.reloadData()
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1.1, execute: {
-      let newPokemonsURL = "https://pokeapi.co/api/v2/pokemon?limit=5&offset=\(self.counter)"
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { // not good
+      let newPokemonsURL = "https://pokeapi.co/api/v2/pokemon?limit=30&offset=\(self.counter)"
       print(newPokemonsURL)
       self.url = URL(string: newPokemonsURL)!
       self.pokemonArray.append(contentsOf: self.pokemonList)
-      self.counter += 5
+      self.pokemonCounter()
       self.downloadPokemon()
       self.fetchingMore = false
       self.pokemonTableView?.tableView.reloadData()
     })
   }
+  
+  func pokemonCounter() {
+    if self.pokemonArray.count > 0 {
+      self.counter += 30
+      print(self.counter)
+    }
+  }
+  
 }
