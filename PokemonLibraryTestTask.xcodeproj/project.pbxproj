@@ -18,6 +18,7 @@
 		929C0FB925AF34B1001AEE5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 929C0FB725AF34B1001AEE5A /* LaunchScreen.storyboard */; };
 		929C0FC425AF3A87001AEE5A /* PokemonTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929C0FC325AF3A87001AEE5A /* PokemonTableViewController.swift */; };
 		92A9B9A425B2F5AA00FE6D3C /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A9B9A325B2F5AA00FE6D3C /* Pokemon.swift */; };
+		92F996E525C15762001EAB0A /* PokemonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F996E425C15762001EAB0A /* PokemonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		929C0FBA25AF34B1001AEE5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		929C0FC325AF3A87001AEE5A /* PokemonTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTableViewController.swift; sourceTree = "<group>"; };
 		92A9B9A325B2F5AA00FE6D3C /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		92F996E425C15762001EAB0A /* PokemonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonView.swift; sourceTree = "<group>"; };
 		98103204AA1EBB53D982F030 /* Pods_PokemonLibraryTestTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokemonLibraryTestTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B31F677EB88C63974C743B8E /* Pods-PokemonLibraryTestTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokemonLibraryTestTask.release.xcconfig"; path = "Target Support Files/Pods-PokemonLibraryTestTask/Pods-PokemonLibraryTestTask.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,6 +94,7 @@
 				929C0FAE25AF34AD001AEE5A /* SceneDelegate.swift */,
 				929C0FC325AF3A87001AEE5A /* PokemonTableViewController.swift */,
 				924179AE25C05502007EB3E7 /* PokemonTableView.swift */,
+				92F996E425C15762001EAB0A /* PokemonView.swift */,
 				9251659325B7144500AE13D9 /* PokemonTableLoadingCell.swift */,
 				92A9B9A325B2F5AA00FE6D3C /* Pokemon.swift */,
 				929C0FB025AF34AD001AEE5A /* PokemonViewController.swift */,
@@ -217,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92F996E525C15762001EAB0A /* PokemonView.swift in Sources */,
 				9251659425B7144600AE13D9 /* PokemonTableLoadingCell.swift in Sources */,
 				929C0FB125AF34AD001AEE5A /* PokemonViewController.swift in Sources */,
 				929C0FAD25AF34AD001AEE5A /* AppDelegate.swift in Sources */,

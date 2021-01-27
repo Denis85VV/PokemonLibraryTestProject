@@ -13,6 +13,8 @@ class PokemonTableView: UIView {
     let table = UITableView()
     table.register(UITableViewCell.self, forCellReuseIdentifier: PokemonTableViewController.pokemonCell)
     table.register(PokemonTableLoadingCell.self, forCellReuseIdentifier: PokemonTableLoadingCell.loadingCell)
+    table.separatorStyle = .none
+    table.backgroundColor = .white
     table.tableFooterView = UIView() // hide empty cells
     return table
   }()
@@ -33,6 +35,5 @@ class PokemonTableView: UIView {
     tableView.leftAnchor.constraint(equalTo:self.leftAnchor).isActive = true
     tableView.rightAnchor.constraint(equalTo:self.rightAnchor).isActive = true
     tableView.bottomAnchor.constraint(equalTo:self.bottomAnchor).isActive = true
-    tableView.backgroundColor = .white
   }
 }

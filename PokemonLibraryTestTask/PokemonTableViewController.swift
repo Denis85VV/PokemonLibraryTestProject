@@ -34,18 +34,22 @@ class PokemonTableViewController: UIViewController, UITableViewDataSource, UITab
     pokemonTableView?.tableView.dataSource = self
     
     downloadPokemon()
-    beginBatchFeatch()
+    beginBatchFetch()
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
+    
     var currentSelectedImage: URL
     var currentSelectedLabel: String
+    
     currentSelectedImage = pokemonArray[indexPath.row].imageURL ?? defaultImageUrl
     currentSelectedLabel = pokemonArray[indexPath.row].name.capitalized
+    
     let vc = PokemonViewController(pokemonImage: currentSelectedImage, pokemonLabel: currentSelectedLabel)
     vc.setImageName(image: currentSelectedImage)
     vc.setLabelName(name: currentSelectedLabel)
+    
     self.navigationController?.pushViewController(vc, animated: true)
   }
   
@@ -71,7 +75,7 @@ class PokemonTableViewController: UIViewController, UITableViewDataSource, UITab
       return cell
     } else {
       let cell = tableView.dequeueReusableCell(withIdentifier: PokemonTableLoadingCell.loadingCell, for: indexPath) as! PokemonTableLoadingCell
-      cell.separatorInset = UIEdgeInsets.zero // hid separator line did not work
+      //cell.separatorInset = UIEdgeInsets.zero // hid separator line did not work
       cell.loadingIndicator.startAnimating()
       return cell
     }
@@ -82,7 +86,7 @@ class PokemonTableViewController: UIViewController, UITableViewDataSource, UITab
     let contentHeight = scrollView.contentSize.height
     if offsetY > contentHeight - scrollView.frame.height {
       if !fetchingMore {
-        beginBatchFeatch()
+        beginBatchFetch()
       }
     }
   }
@@ -105,11 +109,11 @@ class PokemonTableViewController: UIViewController, UITableViewDataSource, UITab
     }).resume()
   }
   
-  func beginBatchFeatch() {
+  func beginBatchFetch() {
     fetchingMore = true
-    //self.pokemonTableView?.tableView.reloadSections(IndexSet(integer: 1), with: .none)
+    //self.pokemonTableView?.tableView.reloadSections(IndexSet(integer: 1), with: .none) // crush
     self.pokemonTableView?.tableView.reloadData()
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1.1, execute: {
       let newPokemonsURL = "https://pokeapi.co/api/v2/pokemon?limit=5&offset=\(self.counter)"
       print(newPokemonsURL)
       self.url = URL(string: newPokemonsURL)!
