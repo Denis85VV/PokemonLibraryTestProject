@@ -13,8 +13,9 @@ class PokemonTableViewController: UIViewController, UITableViewDataSource, UITab
   static let loadingGif = UIImage.gif(name: "loading")
   static let pokemonCell = "PokemonCell"
   static let defaultImageUrl = URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png")!
+  static let limit = 30
   
-  public var url = URL(string: "https://pokeapi.co/api/v2/pokemon?limit=30&offset=0")!
+  public var url = URL(string: "https://pokeapi.co/api/v2/pokemon?limit=\(limit))&offset=0")!
   
   private var fetchingMore = false
   private var counter = 30
